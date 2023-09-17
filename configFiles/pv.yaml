@@ -1,0 +1,71 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: mariadb-pv0
+  labels:
+    type: local
+spec:
+  storageClassName: mariadb-local-storage
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  local:
+    path: /home
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - kind-worker
+                - kind-worker2
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: mariadb-pv1
+  labels:
+    type: local
+spec:
+  storageClassName: mariadb-local-storage
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  local:
+    path: /media
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - kind-worker
+                - kind-worker2
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: mariadb-pv2
+  labels:
+    type: local
+spec:
+  storageClassName: mariadb-local-storage
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  local:
+    path: /srv
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - kind-worker
+                - kind-worker2
